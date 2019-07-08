@@ -42,8 +42,12 @@ def single_slug(request, single_slug):
 
 def pubganalyticHome(request):
 	contents = []
+
+	if request.user.username == "": requester = "Anonymous"
+	else: requester = request.user.username
+
 	for c in pubganalyticData.objects.all():
-		if c.requester == request.user.username: contents.append(c)
+		if c.requester == requester: contents.append(c)
 
 	return render(request=request,
 				  template_name="pubganalyticHome.html",
@@ -51,20 +55,23 @@ def pubganalyticHome(request):
 
 
 def pubganalyticAdd(request):
-    if request.method == "POST":
-        form = pubganalyticForm(request.POST, initial={'requester': request.user.username})
-        if form.is_valid():
-        	data = form.save()
-        	messages.success(request, f"New request made : {data.requester}")
 
-        	return redirect("pubganalytic:single_slug", data.requestID)
+	if request.method == "POST":
+		if request.user.username == "": form = pubganalyticForm(request.POST, initial = {'requester': "Anonymous"})
+		else: form = pubganalyticForm(request.POST, initial={'requester': request.user.username})
 
-        else:
-        	for msg in form.error_messages:
-        		messages.error(request, f"{msg} : {form.error_messages[msg]}")
+		if form.is_valid():
+			data = form.save()
+			messages.success(request, f"New request made : {data.requester}")
+			return redirect("pubganalytic:single_slug", data.requestID)
 
-    form = pubganalyticForm(initial={'requester': request.user.username})
-        
-    return render(request = request,
+		else:
+			for msg in form.error_messages:
+				messages.error(request, f"{msg} : {form.error_messages[msg]}")
+
+	if request.user.username == "": form = pubganalyticForm(initial = {'requester': "Anonymous"})
+	else: form = pubganalyticForm(request.POST, initial = {'requester' : request.user.username})
+
+	return render(request = request,
 				  template_name = "pubganalyticAdd.html",
 				  context = {"form":form})
