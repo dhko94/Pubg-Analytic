@@ -1,0 +1,54 @@
+<head>
+	{% load static %}
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <link href="{% static 'css/materialize2.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <style> html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif} A {text-decoration: none;}  </style>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="{% static 'tinymce/js/prism.js' %}"></script>
+</head>
+
+
+<body class="w3-light-grey">
+
+	{% include "include/navbar.html" %}
+	{% include "include/messages.html" %}
+
+
+	<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+		<br>
+
+	    <div class="w3-container">
+		    {% block content %}
+		    {% endblock %}
+		</div>
+
+		<br>
+
+		<div class = "w3-container">
+			{% block content2 %}
+			{% endblock %}
+		</div>
+
+		<br>
+
+		{% include "include/footer.html" %}
+
+	</div>
+
+</body>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="{% static 'js/function.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/graph.js' %}"></script>
+

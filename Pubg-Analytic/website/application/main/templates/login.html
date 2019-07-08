@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block content %}
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+
+		<button class="w3-btn" class="w3-btn" style="background-color:grey; color:white" type="submit">login</button>
+	</form>
+
+	If you don't already have an account, <a href="/register"><strong>register</strong></a> for one.
+{% endblock %}

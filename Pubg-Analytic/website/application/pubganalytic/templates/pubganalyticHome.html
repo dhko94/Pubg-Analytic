@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+	<div class="row">
+		{% for content in contents %}
+		    <div class="col s12 m6 14">
+		    	<a href="{{content.requestID}}" style="color:#000">
+		    		<div class="card hoverable">
+		    			<div class="card-content">
+		    				<div class="card-title">{{content.pubg_name}}</div>
+		    				<p>Requester: {{content.requester}}</p>
+		    				<p>Requested Date: {{content.requested}}</p>
+		    			</div>
+		    		</div>
+		    	</a>
+		    </div>
+	    {% endfor %}
+	</div>
+
+{% endblock %}
+
+{% block content2 %}
+	<a class="waves-effect waves-light w3-btn" style="background-color:grey; color:white" href = "/pubganalyticAdd">Make Request</a>
+{% endblock %}

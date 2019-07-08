@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+	<div class="row">
+		{% for content in contents %}
+		    <div class="col s12 m6 14">
+		    	<a style="color:#000">
+		    		<div class="card hoverable">
+		    			<div class="card-content">
+		    				<div class="card-title">{{content.title}}</div>
+		    				<p>{{content.summary | safe}}</p>
+		    			</div>
+		    		</div>
+		    	</a>
+		    </div>
+	    {% endfor %}
+	</div>
+
+{% endblock %}

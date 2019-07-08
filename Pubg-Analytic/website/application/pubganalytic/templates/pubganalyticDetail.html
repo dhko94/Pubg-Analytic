@@ -1,0 +1,66 @@
+{% extends "main.html" %}
+
+{% block content %}
+	<script>
+
+		var pieData = {{data.pie|safe}};
+		var barData = {{data.bar|safe}};
+		var scatterData = {{data.scatter|safe}};
+		var lineData = {{data.line|safe}};
+		var ganttData = {{data.gantt|safe}};
+
+	</script>
+
+	<header class="w3-container" style="padding-top:22px">
+		<h5><b><i class="fa fa-dashboard"></i> PUBG Analytic Details : {{data.name}} </b></h5>
+
+		<div class = "tab">
+			<button class = "FilterType" onclick = "openType(event, 'GameMode')"> GameMode </button>
+			<button class = "FilterType" onclick = "openType(event, 'Map')"> Map </button> 
+		</div>
+<!--
+		<div id = "GameMode" class = "tabcontent tab">
+			<button id = "SoloTPP" class = "Type active" onclick = "select(event)"> Solo TPP </button>
+			<button id = "DuoTPP" class = "Type active" onclick = "select(event)"> Duo TPP </button>
+			<button id = "SquadTPP" class = "Type active" onclick = "select(event)"> Squad TPP </button>
+			<button id = "SoloFPP" class = "Type active" onclick = "select(event)"> Solo FPP </button>
+			<button id = "DuoFPP" class = "Type active" onclick = "select(event)"> Duo FPP </button>
+			<button id = "SquadFPP" class = "Type active" onclick = "select(event)"> Squad FPP </button>
+		</div>
+
+		<div id = "Map" class = "tabcontent tab">
+			<button id = "Erangel" class = "Type active" onclick = "select(event)"> Erangel </button>
+			<button id = "Miramar" class = "Type active" onclick = "select(event)"> Miramar </button>
+			<button id = "Sanhok" class = "Type active" onclick = "select(event)"> Sanhok </button>
+			<button id = "Vikendi" class = "Type active" onclick = "select(event)"> Vikendi </button>
+			<button id = "Practice" class = "Type active" onclick = "select(event)"> Practice </button>
+		</div>-->
+
+	</header>
+
+	<div class = "w3-row-padding w3-margin-bottom">
+		<br>
+
+		<div class = "row w3-half" id = "piechart"></div>
+		<div class = "row w3-half" id = "barchart"></div>
+	    <div class = "row w3-col" id = "scatterchart"></div>
+	    <div class = "row w3-col" id = "linechart"></div>
+	    <p> Play Timetable Grouped By Date </p>
+	    <div class = "row w3-col" style="height: 400px;" id = "ganttchart"></div>
+
+	</div>
+
+	<div class="w3-row-padding w3-margin-bottom">
+		<p> Possible Stream Sniper List </p>
+
+		<table class = "w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+			{% for person in data.snipe %}
+				<tr>
+					<td> {{person.0}} </td>
+					<td> {{person.1}} </td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+{% endblock %}
